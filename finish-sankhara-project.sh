@@ -17,7 +17,7 @@ prepare_git_repo () {
 	)
 }
 
-echo $NAME > /etc/debian_chroot
+echo sankhara-$NAME > /etc/debian_chroot
 
 cat <<EOF > /finish-sankhara-project-infra.sh
 #!/bin/sh

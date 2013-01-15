@@ -4,4 +4,4 @@ set -ev
 
 NAME="$1"
 
-echo $NAME > /etc/debian_chroot
+echo phassa-$NAME > /etc/debian_chroot
