@@ -34,7 +34,7 @@ mkdir -p /var/fotos
 mkdir -p /var/cache/fotos
 chown fotos:fotos /var/fotos /var/cache/fotos
 
-chown root:infra /knsetup/finish-sankhara-template-infra.sh
-chmod 454 /knsetup/finish-sankhara-template-infra.sh
+chown root:infra /knsetup/finish-sankhara-fstemplate-infra.sh
+chmod 454 /knsetup/finish-sankhara-fstemplate-infra.sh
 
-sudo -u infra sh /knsetup/finish-sankhara-template-infra.sh
+sudo -u infra sh /knsetup/finish-sankhara-fstemplate-infra.sh

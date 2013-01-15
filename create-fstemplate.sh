@@ -26,12 +26,12 @@ cp -pr $SANKHARA $PHASSA
 echo sankhara-template > $SANKHARA/etc/debian_chroot
 echo phassa-template > $PHASSA/etc/debian_chroot
 
-chmod 544 $SANKHARA/knsetup/finish-sankhara-template.sh
+chmod 544 $SANKHARA/knsetup/finish-sankhara-fstemplate.sh
 mount_special_filesystems $SANKHARA
-chroot $SANKHARA /knsetup/finish-sankhara-template.sh
+chroot $SANKHARA /knsetup/finish-sankhara-fstemplate.sh
 umount_special_filesystems $SANKHARA
 
-chmod 544 $PHASSA/knsetup/finish-phassa-template.sh
+chmod 544 $PHASSA/knsetup/finish-phassa-fstemplate.sh
 mount_special_filesystems $PHASSA
-chroot $PHASSA /knsetup/finish-phassa-template.sh
+chroot $PHASSA /knsetup/finish-phassa-fstemplate.sh
 umount_special_filesystems $PHASSA
