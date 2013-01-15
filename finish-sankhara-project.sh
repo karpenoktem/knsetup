@@ -1,10 +1,21 @@
-#!/bin/sh
+#!/bin/bash
 
 set -ev
 
 NAME="$1"
 
-. ./functions.sh
+prepare_git_repo () {
+	(
+		cd "$1"
+		if [ ! -d .git/config ]; then
+			echo "$0: prepare_git_repo: `pwd` is not a git repo" >&2
+			exit 1
+		fi
+		git checkout -f
+		git pull
+		git checkout -b $NAME
+	)
+}
 
 echo $NAME > /etc/debian_chroot
 
@@ -13,7 +24,7 @@ cat <<EOF > /finish-sankhara-project-infra.sh
 
 set -ev
 
-. ./functions.sh
+`declare -f prepare_git_repo`
 
 prepare_git_repo /home/infra/repo
 prepare_git_repo /home/infra/scm/mirte
