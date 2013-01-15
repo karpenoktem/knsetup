@@ -50,6 +50,8 @@ mount_special_filesystems $PROJECTS/$NAME/phassa
 mount --bind $PROJECTS/$NAME/sankhara/home/infra/repo $PROJECTS/$NAME/phassa/root/kninfra
 mount --bind $PROJECTS/$NAME/sankhara/home/infra/scm/sarah $PROJECTS/$NAME/phassa/root/scm/sarah
 mount --bind $PROJECTS/$NAME/sankhara/home/infra/scm/mirte $PROJECTS/$NAME/phassa/root/scm/mirte
+
+# XXX /var/{cache/,}fotos nfs-mounten
 EOF
 chmod +x $PROJECTS/$NAME/boot.sh
 sh $PROJECTS/$NAME/boot.sh
