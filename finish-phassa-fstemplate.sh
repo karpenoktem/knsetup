@@ -5,6 +5,7 @@ set -ev
 apt-get update
 apt-get install -y sudo
 
+mkdir /var/run/kninfra
 mkdir /root/kninfra
 mkdir /root/scm
 mkdir /root/scm/mirte
