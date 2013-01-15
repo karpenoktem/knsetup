@@ -9,8 +9,8 @@ set -ev
 
 . ./functions.sh
 
-if [ -z "$1" ]; then
-	echo "Usage: $0 <name> <fs-template>" >&2
+if [ -z "$1" -o -z "$2" -o -z "$3" ]; then
+	echo "Usage: $0 <name> <fs-template> <db-template>" >&2
 	exit 1
 fi
 
@@ -18,6 +18,7 @@ PROJECTS="/projects"
 TEMPLATES="$PROJECTS/templates"
 NAME="$1"
 FSTPL="$2"
+DBTPL="$3"
 
 if [ -d "$PROJECTS/$NAME" ]; then
 	echo "$0: Name already in use" >&2
@@ -25,6 +26,10 @@ if [ -d "$PROJECTS/$NAME" ]; then
 fi
 if [ ! -d "$TEMPLATES/sankhara-$FSTPL" -o ! -d "$TEMPLATES/phassa-$FSTPL" ]; then
 	echo "$0: FS-template is unknown" >&2
+	exit 1
+fi
+if [ ! -d "$TEMPLATES/db-$DBTPL" ]; then
+	echo "$0: DB-template is unknown" >&2
 	exit 1
 fi
 
@@ -74,6 +79,11 @@ umount $PROJECTS/$NAME/sankhara
 umount $PROJECTS/$NAME/phassa
 EOF
 chmod +x $PROJECTS/$NAME/umount.sh
+
+cat <<EOF > $PROJECTS/$NAME/sankhara/root/configuration.sh
+HTTP_DOMAIN=$NAME.dev.karpenoktem.nl
+PASSWORD_KNFOTOS=`pwgen -1`
+EOF
 
 chmod 544 $PROJECTS/$NAME/sankhara/knsetup/finish-sankhara-project.sh $PROJECTS/$NAME/phassa/knsetup/finish-phassa-project.sh
 chroot $PROJECTS/$NAME/sankhara /knsetup/finish-sankhara-project.sh $NAME

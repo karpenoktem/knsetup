@@ -43,4 +43,11 @@ prepare_git_repo /srv/karpenoktem.nl/htdocs/fotos
 prepare_git_repo /srv/karpenoktem.nl/htdocs/mediawiki
 prepare_git_repo /srv/karpenoktem.nl/htdocs/site
 
+. /root/configuration.sh
+
 sed "s/%PORTNR%/$(($RANDOM%65536+32768))/g" < /knsetup/mongodb.conf > /etc/mongodb.conf
+
+# Setup config.php for knfotos
+sed -e 's@/path/to/fotos/@/var/fotos/@g' -e 's@/path/to/cache/@/var/cache/fotos/@g' -e "s@db_user.*@db_user = 'prj_$NAME_fotos';@g" -e "s@db_db.*@db_db = 'prj_$NAME_fotos';@g" -e "s@karpenoktem.nl@$HTTP_DOMAIN@g" -e 's@/fotos2/@/fotos/@g' -e "s@db_pass.*@db_pass = '$PASSWORD_KNFOTOS';@g" -e "s@mongo_db.*@mongo_db = 'prj_$NAME';@g" < /srv/karpenoktem.nl/htdocs/fotos/config.php.sample > /srv/karpenoktem.nl/htdocs/fotos/config.php
+chown fotos:www-data /srv/karpenoktem.nl/htdocs/fotos/config.php
+chmod 640 /srv/karpenoktem.nl/htdocs/fotos/config.php
