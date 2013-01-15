@@ -68,7 +68,7 @@ sed -e "s/karpenoktem.nl/$HTTP_DOMAIN/g" \
     -e "s@^MAILMAN_DEFAULT_PASSWORD.*@MAILMAN_DEFAULT_PASSWORD = '$PASSWORD_MAILMAN_SITEDEFAULT'@g" \
     -e "s@^WIKI_MYSQL_SECRET.*@WIKI_MYSQL_SECRET = ('localhost', 'prj_${NAME}_wiki', '$PASSWORD_WIKI', 'prj_${NAME}_wiki')@g" \
     -e "s@^FORUM_MYSQL_SECRET.*@FORUM_MYSQL_SECRET = ('localhost', 'prj_${NAME}_punbb', '$PASSWORD_FORUM', 'prj_${NAME}_punbb')@g" \
-    -e "s@^PHOTOS_MYSQL_SECRET.*@PHOTOS_MYSQL_SECRET = ('localhost', 'prj_${NAME}_fotos', '$PASSWORD_KNPHOTOS', 'prj_${NAME}_fotos')@g" \
+    -e "s@^PHOTOS_MYSQL_SECRET.*@PHOTOS_MYSQL_SECRET = ('localhost', 'prj_${NAME}_fotos', '$PASSWORD_KNFOTOS', 'prj_${NAME}_fotos')@g" \
     -e "s@^CHUCK_NORRIS_HIS_SECRET.*@CHUCK_NORRIS_HIS_SECRET = '$PASSWORD_CHUCK_NORRIS'@g" \
     -e "s@^ALLOWED_API_KEYS.*@ALLOWED_API_KEYS = ()@g" \
 		 < /home/infra/repo/kn/settings.example.py > /home/infra/repo/kn/settings.py
