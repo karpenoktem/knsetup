@@ -5,7 +5,7 @@ set -ev
 gpg --recv-keys 9ECBEC467F0CEB10 --keyserver subkeys.pgp.net
 gpg --export --armor 9ECBEC467F0CEB10 | apt-key add -
 apt-get update
-apt-get install -y git
+apt-get install -y git mongodb-10gen ffmpeg mysql-server php5-cli php5-mysql php5-memcache php5-curl postfix mailman memcached
 
 addgroup --gid 999 infra
 addgroup --gid 1000 kn
