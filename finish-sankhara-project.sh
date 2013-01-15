@@ -24,6 +24,8 @@ cat <<EOF > /finish-sankhara-project-infra.sh
 
 set -ev
 
+NAME="$NAME"
+
 `declare -f prepare_git_repo`
 
 prepare_git_repo /home/infra/repo
