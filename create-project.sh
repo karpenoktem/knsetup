@@ -1,4 +1,6 @@
-#!/bin/sh -ev
+#!/bin/sh
+
+set -ev
 
 . ./functions.sh
 

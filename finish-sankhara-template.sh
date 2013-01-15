@@ -1,4 +1,6 @@
-#!/bin/sh -ev
+#!/bin/sh
+
+set -ev
 
 gpg --recv-keys 9ECBEC467F0CEB10 --keyserver subkeys.pgp.net
 gpg --export --armor 9ECBEC467F0CEB10 | apt-key add -

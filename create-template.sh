@@ -1,4 +1,6 @@
-#!/bin/sh -ev
+#!/bin/sh
+
+set -ev
 
 PROJECTS="/projects"
 TEMPLATES="$PROJECTS/templates"
