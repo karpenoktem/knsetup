@@ -12,6 +12,7 @@ while [ -d "$TEMPLATES/db-$TPLID" ]; do
 	TPLID=$(($TPLID+1))
 done
 
+mkdir $TEMPLATES/db-$TPLID
 cd $TEMPLATES/db-$TPLID
 python /home/infra/repo/utils/anonymized-dump/create.py
 
