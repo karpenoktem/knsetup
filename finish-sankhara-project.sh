@@ -13,7 +13,7 @@ prepare_git_repo () {
 		fi
 		git checkout -f
 		git pull
-		git checkout -b $NAME
+		git checkout -b prj-$NAME
 	)
 }
 
