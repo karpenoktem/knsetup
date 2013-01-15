@@ -62,6 +62,7 @@ chmod 640 /srv/karpenoktem.nl/htdocs/fotos/config.php
 
 # Setup settings.py for kninfra
 sed -e "s/karpenoktem.nl/$HTTP_DOMAIN/g" \
+    -e "s@^INFRA_UID.*@INFRA_UID = 1000@g" \
     -e "s@^MONGO_DB.*@MONGO_DB = 'prj_$NAME'@g" \
     -e "s@^SECRET_KEY.*@SECRET_KEY = '`pwgen -1y 60`'@g" \
     -e "s@^MAILMAN_DEFAULT_PASSWORD.*@MAILMAN_DEFAULT_PASSWORD = '$PASSWORD_MAILMAN_SITEDEFAULT'@g" \
