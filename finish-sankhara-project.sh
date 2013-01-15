@@ -7,7 +7,7 @@ NAME="$1"
 prepare_git_repo () {
 	(
 		cd "$1"
-		if [ ! -d .git/config ]; then
+		if [ ! -f .git/config ]; then
 			echo "$0: prepare_git_repo: `pwd` is not a git repo" >&2
 			exit 1
 		fi
