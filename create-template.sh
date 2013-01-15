@@ -1,11 +1,12 @@
 #!/bin/sh -ev
 
-source functions.sh
+PROJECTS="/projects"
+TEMPLATES="$PROJECTS/templates"
 
-cd /projects/templates/
+. functions.sh
 
-TPLID='`date +%Y%m%d`01"
-while [ -d "$TPLID" ]; do
+TPLID="`date +%Y%m%d`01"
+while [ -d "$TEMPLATES/sankhara-$TPLID" -o -d "$TEMPLATES/phassa-$TPLID" ]; do
 	TPLID=$(($TPLID+1))
 done
 
