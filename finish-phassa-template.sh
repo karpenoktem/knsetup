@@ -3,6 +3,7 @@
 set -ev
 
 apt-get update
+apt-get install -y sudo
 
 mkdir /root/kninfra
 mkdir /root/scm
