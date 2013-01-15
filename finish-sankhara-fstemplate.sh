@@ -22,6 +22,10 @@ addgroup --gid 501 fotos
 adduser --uid 1000 --gid 999 infra --gecos ",,," --disabled-password
 adduser --uid 501 --gid 501 fotos --gecos ",,," --disabled-password
 
+mkdir -p /var/run/infra
+chown infra:interinfra /var/run/infra
+chmod 775 /var/run/infra
+
 mkdir -p /srv/karpenoktem.nl/htdocs/
 cd /srv/karpenoktem.nl/htdocs/
 ln -s /mnt/phassa/groups/leden/site-archief archief
