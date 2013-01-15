@@ -23,8 +23,8 @@ python /home/infra/repo/utils/anonymized-dump/restore.py
 
 (
 	. /root/configuration.sh
-	echo "CREATE USER prj_$NAME_fotos@localhost IDENTIFIED BY '$PASSWORD_KNFOTOS';"
-	echo "CREATE DATABASE prj_$NAME_fotos;"
-	echo "GRANT ALL PRIVILEGES ON prj_$NAME_fotos.* TO prj_$NAME_fotos@localhost;"
+	echo "CREATE USER prj_${NAME}_fotos@localhost IDENTIFIED BY '$PASSWORD_KNFOTOS';"
+	echo "CREATE DATABASE prj_${NAME}_fotos;"
+	echo "GRANT ALL PRIVILEGES ON prj_${NAME}_fotos.* TO prj_${NAME}_fotos@localhost;"
 ) | mysql
 mysql prj_$NAME_fotos < fotos.sql

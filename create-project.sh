@@ -82,7 +82,11 @@ chmod +x $PROJECTS/$NAME/umount.sh
 
 cat <<EOF > $PROJECTS/$NAME/sankhara/root/configuration.sh
 HTTP_DOMAIN=$NAME.dev.karpenoktem.nl
+PASSWORD_MAILMAN_LISTDEFAULT=`pwgen -1`
+PASSWORD_WIKI=`pwgen -1`
 PASSWORD_KNFOTOS=`pwgen -1`
+PASSWORD_FORUM=`pwgen -1`
+PASSWORD_CHUCK_NORRIS=`pwgen -1`
 EOF
 
 chmod 544 $PROJECTS/$NAME/sankhara/knsetup/finish-sankhara-project.sh $PROJECTS/$NAME/phassa/knsetup/finish-phassa-project.sh

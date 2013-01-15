@@ -48,6 +48,28 @@ prepare_git_repo /srv/karpenoktem.nl/htdocs/site
 sed "s/%PORTNR%/$(($RANDOM%65536+32768))/g" < /knsetup/mongodb.conf > /etc/mongodb.conf
 
 # Setup config.php for knfotos
-sed -e 's@/path/to/fotos/@/var/fotos/@g' -e 's@/path/to/cache/@/var/cache/fotos/@g' -e "s@db_user.*@db_user = 'prj_$NAME_fotos';@g" -e "s@db_db.*@db_db = 'prj_$NAME_fotos';@g" -e "s@karpenoktem.nl@$HTTP_DOMAIN@g" -e 's@/fotos2/@/fotos/@g' -e "s@db_pass.*@db_pass = '$PASSWORD_KNFOTOS';@g" -e "s@mongo_db.*@mongo_db = 'prj_$NAME';@g" < /srv/karpenoktem.nl/htdocs/fotos/config.php.sample > /srv/karpenoktem.nl/htdocs/fotos/config.php
+sed -e 's@/path/to/fotos/@/var/fotos/@g' \
+    -e 's@/path/to/cache/@/var/cache/fotos/@g' \
+		-e "s@db_user.*@db_user = 'prj_${NAME}_fotos';@g" \
+		-e "s@db_db.*@db_db = 'prj_${NAME}_fotos';@g" \
+		-e "s@karpenoktem.nl@$HTTP_DOMAIN@g" \
+		-e 's@/fotos2/@/fotos/@g' \
+		-e "s@db_pass.*@db_pass = '$PASSWORD_KNFOTOS';@g" \
+		-e "s@mongo_db.*@mongo_db = 'prj_$NAME';@g" \
+		< /srv/karpenoktem.nl/htdocs/fotos/config.php.sample > /srv/karpenoktem.nl/htdocs/fotos/config.php
 chown fotos:www-data /srv/karpenoktem.nl/htdocs/fotos/config.php
 chmod 640 /srv/karpenoktem.nl/htdocs/fotos/config.php
+
+# Setup settings.py for kninfra
+sed -e "s/karpenoktem.nl/$HTTP_DOMAIN/g" \
+    -e "s@^MONGO_DB.*@MONGO_DB = 'prj_$NAME'@g" \
+    -e "s@^SECRET_KEY.*@SECRET_KEY = '`pwgen -1y 60`'@g" \
+    -e "s@^MAILMAN_DEFAULT_PASSWORD.*@MAILMAN_DEFAULT_PASSWORD = '$PASSWORD_MAILMAN_SITEDEFAULT'@g" \
+    -e "s@^WIKI_MYSQL_SECRET.*@WIKI_MYSQL_SECRET = ('localhost', 'prj_${NAME}_wiki', '$PASSWORD_WIKI', 'prj_${NAME}_wiki')@g" \
+    -e "s@^FORUM_MYSQL_SECRET.*@FORUM_MYSQL_SECRET = ('localhost', 'prj_${NAME}_punbb', '$PASSWORD_FORUM', 'prj_${NAME}_punbb')@g" \
+    -e "s@^PHOTOS_MYSQL_SECRET.*@PHOTOS_MYSQL_SECRET = ('localhost', 'prj_${NAME}_fotos', '$PASSWORD_KNPHOTOS', 'prj_${NAME}_fotos')@g" \
+    -e "s@^CHUCK_NORRIS_HIS_SECRET.*@CHUCK_NORRIS_HIS_SECRET = '$PASSWORD_CHUCK_NORRIS'@g" \
+    -e "s@^ALLOWED_API_KEYS.*@ALLOWED_API_KEYS = ()@g" \
+		 < /home/infra/repo/kn/settings.example.py > /home/infra/repo/kn/settings.py
+chown infra:infra /home/infra/repo/kn/settings.py
+chmod 600 /home/infra/repo/kn/settings.py
