@@ -5,7 +5,9 @@ set -ev
 gpg --keyserver subkeys.pgp.net --recv-keys 9ECBEC467F0CEB10
 gpg --export --armor 9ECBEC467F0CEB10 | apt-key add -
 apt-get update
-apt-get install -y git mongodb-10gen ffmpeg mysql-server php5-cli php5-mysql php5-memcache php5-curl postfix mailman memcached
+apt-get install -y git ffmpeg php5-cli php5-mysql php5-memcache php5-curl memcached
+# mongodb-10gen en mysql-server moeten hier ook nog bij maar die crashen de installatie
+# postfix en mailman moeten hier ook nog bij, maar die stellen vragen
 
 addgroup --gid 999 infra
 addgroup --gid 1000 kn
