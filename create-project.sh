@@ -52,6 +52,7 @@ unionfs-fuse -o cow,max_files=32768 -o allow_other,use_ino,suid,dev,nonempty $PR
 mount_special_filesystems $PROJECTS/$NAME/sankhara
 mount_special_filesystems $PROJECTS/$NAME/phassa
 
+mount --bind $PROJECTS/$NAME/sankhara/var/run/infra $PROJECTS/$NAME/phassa/var/run/infra
 mount --bind $PROJECTS/$NAME/sankhara/home/infra/repo $PROJECTS/$NAME/phassa/root/kninfra
 mount --bind $PROJECTS/$NAME/sankhara/home/infra/scm/sarah $PROJECTS/$NAME/phassa/root/scm/sarah
 mount --bind $PROJECTS/$NAME/sankhara/home/infra/scm/mirte $PROJECTS/$NAME/phassa/root/scm/mirte
@@ -71,6 +72,7 @@ set -v
 umount_special_filesystems $PROJECTS/$NAME/sankhara
 umount_special_filesystems $PROJECTS/$NAME/phassa
 
+umount $PROJECTS/$NAME/phassa/var/run/infra
 umount $PROJECTS/$NAME/phassa/root/kninfra
 umount $PROJECTS/$NAME/phassa/root/scm/sarah
 umount $PROJECTS/$NAME/phassa/root/scm/mirte
