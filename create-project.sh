@@ -29,10 +29,14 @@ mkdir $PROJECTS/$NAME/phassa
 mkdir $PROJECTS/$NAME/sankhara-union
 mkdir $PROJECTS/$NAME/phassa-union
 
+FUNCTIONS="`cat functions.sh`"
+
 cat <<EOF > $PROJECTS/$NAME/boot.sh
 #!/bin/sh
 
 set -ev
+
+$FUNCTIONS
 
 unionfs-fuse -o cow,max_files=32768 -o allow_other,use_ino,suid,dev,nonempty $PROJECTS/$NAME/sankhara-union=RW:$TEMPLATES/sankhara-$FSTPL=RO $PROJECTS/$NAME/sankhara
 unionfs-fuse -o cow,max_files=32768 -o allow_other,use_ino,suid,dev,nonempty $PROJECTS/$NAME/phassa-union=RW:$TEMPLATES/phassa-$FSTPL=RO $PROJECTS/$NAME/phassa
@@ -46,6 +50,21 @@ mount --bind $PROJECTS/$NAME/sankhara/home/infra/scm/mirte $PROJECTS/$NAME/phass
 EOF
 chmod +x $PROJECTS/$NAME/boot.sh
 sh $PROJECTS/$NAME/boot.sh
+
+cat <<EOF > $PROJECTS/$NAME/umount.sh
+#!/bin/sh
+
+set -v
+
+$FUNCTIONS
+
+umount_special_filesystems $PROJECTS/$NAME/sankhara
+umount_special_filesystems $PROJECTS/$NAME/phassa
+
+umount $PROJECTS/$NAME/sankhara
+umount $PROJECTS/$NAME/phassa
+EOF
+chmod +x $PROJECTS/$NAME/umount.sh
 
 cp finish-sankhara-project.sh $PROJECTS/$NAME/sankhara
 cp finish-phassa-project.sh $PROJECTS/$NAME/phassa
