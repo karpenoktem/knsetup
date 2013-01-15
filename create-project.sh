@@ -73,8 +73,6 @@ umount $PROJECTS/$NAME/phassa
 EOF
 chmod +x $PROJECTS/$NAME/umount.sh
 
-cp finish-sankhara-project.sh $PROJECTS/$NAME/sankhara
-cp finish-phassa-project.sh $PROJECTS/$NAME/phassa
-chmod 544 $PROJECTS/$NAME/sankhara/finish-sankhara-project.sh $PROJECTS/$NAME/phassa/finish-phassa-project.sh
-chroot $PROJECTS/$NAME/sankhara /finish-sankhara-project.sh $NAME
-chroot $PROJECTS/$NAME/phassa /finish-phassa-project.sh $NAME
+chmod 544 $PROJECTS/$NAME/sankhara/knsetup/finish-sankhara-project.sh $PROJECTS/$NAME/phassa/knsetup/finish-phassa-project.sh
+chroot $PROJECTS/$NAME/sankhara /knsetup/finish-sankhara-project.sh $NAME
+chroot $PROJECTS/$NAME/phassa /knsetup/finish-phassa-project.sh $NAME
