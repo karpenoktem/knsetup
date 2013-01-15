@@ -51,7 +51,7 @@ mkdir py
 cd py
 git clone git://github.com/awesterb/koert
 for i in mirte py-tarjan regl sarah; do
-	ln -s ../scm/$i
+	ln -s ../scm/\$i
 done
 # XXX iso8601 ophalen
 EOF
