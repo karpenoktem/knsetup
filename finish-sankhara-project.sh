@@ -42,3 +42,5 @@ prepare_git_repo /srv/karpenoktem.nl/htdocs/forum
 prepare_git_repo /srv/karpenoktem.nl/htdocs/fotos
 prepare_git_repo /srv/karpenoktem.nl/htdocs/mediawiki
 prepare_git_repo /srv/karpenoktem.nl/htdocs/site
+
+sed "s/%PORTNR%/$(($RANDOM%65536+32768))/g" < /knsetup/mongodb.conf > /etc/mongodb.conf
