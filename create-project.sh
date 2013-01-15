@@ -1,4 +1,9 @@
-#!/bin/sh
+#!/bin/bash
+
+if ! type declare >/dev/null; then
+	echo "$0: This should be run with bash instead of sh" >&2
+	exit 1
+fi
 
 set -ev
 
