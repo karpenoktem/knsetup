@@ -19,7 +19,7 @@ prepare_git_repo () {
 
 echo sankhara-$NAME > /etc/debian_chroot
 
-cat <<EOF > /finish-sankhara-project-infra.sh
+cat <<EOF > /knsetup/finish-sankhara-project-infra.sh
 #!/bin/sh
 
 set -ev
@@ -36,7 +36,7 @@ prepare_git_repo /home/infra/scm/sarah
 prepare_git_repo /home/infra/py/koert
 EOF
 
-sudo -u infra sh /finish-sankhara-project-infra.sh
+sudo -u infra sh /knsetup/finish-sankhara-project-infra.sh
 
 prepare_git_repo /srv/karpenoktem.nl/htdocs/forum
 prepare_git_repo /srv/karpenoktem.nl/htdocs/fotos
