@@ -8,8 +8,9 @@ echo "ENABLE_MONGODB=no" > /etc/default/mongodb
 gpg --keyserver subkeys.pgp.net --recv-keys 9ECBEC467F0CEB10
 gpg --export --armor 9ECBEC467F0CEB10 | apt-key add -
 apt-get update
-apt-get install -y git ffmpeg php5-cli php5-mysql php5-memcache php5-curl memcached sudo mongodb-10gen
-# mysql-server moet hier ook nog bij maar die crashen de installatie
+apt-get install -y git ffmpeg php5-cli php5-mysql php5-memcache php5-curl memcached sudo
+# mongodb-10gen gebruiken we voorlopig nog algemeen op khandhas
+# mysql-server moet hier ook nog bij maar die crashen de installatie (en gebruiken we voorlopig nog algemeen op khandhas)
 # postfix en mailman moeten hier ook nog bij, maar die stellen vragen
 
 rm /etc/default/mongodb
