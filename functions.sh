@@ -11,3 +11,16 @@ umount_special_filesystems() {
 	umount $1/sys
 	umount $1/dev/pts
 }
+
+prepare_git_repo () {
+	(
+		cd "$1"
+		if [ ! -d .git/config ]; then
+			echo "$0: prepare_git_repo: `pwd` is not a git repo" >&2
+			exit 1
+		fi
+		git checkout -f
+		git pull
+		git checkout -b $NAME
+	)
+}
