@@ -3,15 +3,15 @@
 PROJECTS="/projects"
 TEMPLATES="$PROJECTS/templates"
 
-. functions.sh
+. ./functions.sh
 
 TPLID="`date +%Y%m%d`01"
 while [ -d "$TEMPLATES/sankhara-$TPLID" -o -d "$TEMPLATES/phassa-$TPLID" ]; do
 	TPLID=$(($TPLID+1))
 done
 
-SANKHARA="sankhara-$TPLID"
-PHASSA="phassa-$TPLID"
+SANKHARA="$TEMPLATES/sankhara-$TPLID"
+PHASSA="$TEMPLATES/phassa-$TPLID"
 
 debootstrap squeeze $SANKHARA http://ftp.nl.debian.org/debian
 cp /etc/hosts $SANKHARA/etc/hosts
@@ -26,7 +26,7 @@ mount_special_filesystems $SANKHARA
 chroot $SANKHARA /finish-sankhara-template.sh
 umount_special_filesystems $SANKHARA
 
-cp -p finish-phassa-template.sh $SANKHARA/finish-phassa-template.sh
+cp -p finish-phassa-template.sh $PHASSA/finish-phassa-template.sh
 mount_special_filesystems $PHASSA
 chroot $PHASSA /finish-phassa-template.sh
 umount_special_filesystems $PHASSA

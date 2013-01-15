@@ -1,6 +1,6 @@
 #!/bin/sh -ev
 
-gpg --recv-keys 9ECBEC467F0CEB10
+gpg --recv-keys 9ECBEC467F0CEB10 --keyserver subkeys.pgp.net
 gpg --export --armor 9ECBEC467F0CEB10 | apt-key add -
 apt-get update
 apt-get install -y git

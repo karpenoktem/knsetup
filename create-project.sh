@@ -1,6 +1,6 @@
 #!/bin/sh -ev
 
-. functions.sh
+. ./functions.sh
 
 if [ -z "$1" ]; then
 	echo "Usage: $0 <name> <fs-template>" >&2
