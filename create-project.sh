@@ -84,6 +84,7 @@ chmod +x $PROJECTS/$NAME/umount.sh
 
 cat <<EOF > $PROJECTS/$NAME/sankhara/root/configuration.sh
 HTTP_DOMAIN=$NAME.dev.karpenoktem.nl
+PASSWORD_SECRET_KEY=`pwgen -1y 60`
 PASSWORD_MAILMAN_LISTDEFAULT=`pwgen -1`
 PASSWORD_WIKI=`pwgen -1`
 PASSWORD_KNFOTOS=`pwgen -1`

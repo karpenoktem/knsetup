@@ -64,8 +64,8 @@ chmod 640 /srv/karpenoktem.nl/htdocs/fotos/config.php
 sed -e "s/karpenoktem.nl/$HTTP_DOMAIN/g" \
     -e "s@^INFRA_UID.*@INFRA_UID = 1000@g" \
     -e "s@^MONGO_DB.*@MONGO_DB = 'prj_$NAME'@g" \
-    -e "s@^SECRET_KEY.*@SECRET_KEY = '`pwgen -1y 60`'@g" \
-    -e "s@^MAILMAN_DEFAULT_PASSWORD.*@MAILMAN_DEFAULT_PASSWORD = '$PASSWORD_MAILMAN_SITEDEFAULT'@g" \
+    -e "s@^SECRET_KEY.*@SECRET_KEY = '$PASSWORD_SECRET_KEY'@g" \
+    -e "s@^MAILMAN_DEFAULT_PASSWORD.*@MAILMAN_DEFAULT_PASSWORD = '$PASSWORD_MAILMAN_LISTDEFAULT'@g" \
     -e "s@^WIKI_MYSQL_SECRET.*@WIKI_MYSQL_SECRET = ('localhost', 'prj_${NAME}_wiki', '$PASSWORD_WIKI', 'prj_${NAME}_wiki')@g" \
     -e "s@^FORUM_MYSQL_SECRET.*@FORUM_MYSQL_SECRET = ('localhost', 'prj_${NAME}_punbb', '$PASSWORD_FORUM', 'prj_${NAME}_punbb')@g" \
     -e "s@^PHOTOS_MYSQL_SECRET.*@PHOTOS_MYSQL_SECRET = ('localhost', 'prj_${NAME}_fotos', '$PASSWORD_KNFOTOS', 'prj_${NAME}_fotos')@g" \
