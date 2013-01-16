@@ -20,9 +20,10 @@ ln -s repo/bin
 	mkdir py
 	cd py
 	git clone git://github.com/awesterb/koert
-	for i in mirte py-tarjan regl sarah; do
-		ln -s ../scm/$i
+	for i in mirte py-tarjan sarah; do
+		ln -s ../scm/$i/src $i
 	done
+	ln -s ../scm/regl
 	# XXX iso8601 ophalen
 )
 
