@@ -20,11 +20,15 @@ ln -s repo/bin
 	mkdir py
 	cd py
 	git clone git://github.com/awesterb/koert
-	for i in mirte py-tarjan sarah; do
+	for i in mirte sarah; do
 		ln -s ../scm/$i/src $i
 	done
+	ln -s ../scm/py-tarjan/src tarjan
 	ln -s ../scm/regl
-	# XXX iso8601 ophalen
+	mkdir iso8601
+	cd /tmp
+	tar xf iso8601-0.1.4.tar.gz
+	mv iso8601-0.1.4/iso8601/*.py /home/infra/py/iso8601
 )
 
 (
