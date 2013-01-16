@@ -18,19 +18,20 @@ EOF
 gpg --keyserver subkeys.pgp.net --recv-keys 9ECBEC467F0CEB10
 gpg --export --armor 9ECBEC467F0CEB10 | apt-key add -
 apt-get update
-apt-get install -y git ffmpeg php5-cli php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python equivs mailman
-# mongodb-10gen gebruiken we voorlopig nog algemeen op khandhas
-# mysql-server moet hier ook nog bij maar die crashen de installatie (en gebruiken we voorlopig nog algemeen op khandhas)
-# postfix moet hier ook nog bij, maar die stelt vragen
-
-rm /etc/default/mongodb
-
+apt-get install -y equivs
 (
 	cd /knsetup
 	equivs-build fake-mta.equivs
 	equivs-build fake-httpd.equivs
 	dpkg -i *.deb
 )
+
+apt-get install -y git ffmpeg php5-cli php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman
+# mongodb-10gen gebruiken we voorlopig nog algemeen op khandhas
+# mysql-server moet hier ook nog bij maar die crashen de installatie (en gebruiken we voorlopig nog algemeen op khandhas)
+# postfix moet hier ook nog bij, maar die stelt vragen
+
+rm /etc/default/mongodb
 
 addgroup --gid 999 infra
 addgroup --gid 1000 kn
