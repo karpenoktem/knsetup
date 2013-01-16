@@ -27,8 +27,8 @@ rm /etc/default/mongodb
 
 (
 	cd /knsetup
-	equivs-build fake-mta
-	equivs-build fake-httpd
+	equivs-build fake-mta.equivs
+	equivs-build fake-httpd.equivs
 	dpkg -i *.deb
 )
 
