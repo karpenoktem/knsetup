@@ -1,23 +1,21 @@
 #!/bin/sh
 
 set -ev
-PROJECTS="/projects"
-TEMPLATES="$PROJECTS/templates"
 
-if [ -z "$1" -o -z "$2" ]; then
-	echo "Usage: $0 <name> <dbtemplate>" >&2
+if [ -z "$1" ]; then
+	echo "Usage: $0 <name>" >&2
 	exit 1
 fi
 
 NAME="$1"
-DBTPL="$2"
+TEMPLATE=/root/dbtemplate
 
-if [ ! -d "$TEMPLATES/db-$DBTPL" ]; then
-	echo "$0: DB-template is unknown" >&2
+if [ ! -d "$TEMPLATE" ]; then
+	echo "$0: DB-template not found" >&2
 	exit 1
 fi
 
-cd $TEMPLATES/db-$DBTPL
+cd $TEMPLATE
 sed -i 's/return/#&/g' /home/infra/repo/utils/anonymized-dump/restore.py
 python /home/infra/repo/utils/anonymized-dump/restore.py
 
