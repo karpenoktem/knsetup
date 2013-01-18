@@ -27,7 +27,7 @@ ln -s repo/bin
 	ln -s ../scm/regl
 	mkdir iso8601
 	cd /tmp
-	tar xf iso8601-0.1.4.tar.gz
+	tar zxf /knsetup/iso8601-0.1.4.tar.gz
 	mv iso8601-0.1.4/iso8601/*.py /home/infra/py/iso8601
 )
 
