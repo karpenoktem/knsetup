@@ -2,6 +2,8 @@
 
 set -ev
 
+install -m 0555 /knsetup/set-git-credentials /usr/local/bin/
+
 # Don't start MongoDB directly from apt-get install
 echo "ENABLE_MONGODB=no" > /etc/default/mongodb
 
