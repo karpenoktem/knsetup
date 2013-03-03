@@ -5,6 +5,8 @@ set -ev
 apt-get update
 apt-get install -y sudo python python-django msgpack-python screen
 
+addgroup --gid 1000 kn
+
 mkdir /var/run/infra
 mkdir /root/kninfra
 mkdir /root/scm
