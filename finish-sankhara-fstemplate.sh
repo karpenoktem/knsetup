@@ -12,7 +12,8 @@ exit 101
 EOF
 chmod 555 /usr/sbin/policy-rc.d
 
-rsync -a /knsetup/lighttpd-config/ /etc/lighttpd/
+rm -rf /etc/lighttpd
+cp -pr /knsetup/lighttpd-config/ /etc/lighttpd/
 
 # Preseed some packages to stop them from asking questions
 cat <<EOF | debconf-set-selections
