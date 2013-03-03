@@ -79,6 +79,7 @@ git clone git://github.com/karpenoktem/punbb.git forum
 git clone git://github.com/karpenoktem/knfotos.git fotos
 git clone git://github.com/karpenoktem/mediawiki.git mediawiki
 git clone git://github.com/karpenoktem/knsite site
+ln -s karpenoktem.nl /srv/default
 
 mkdir -p /var/fotos
 mkdir -p /var/cache/fotos
