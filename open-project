@@ -3,6 +3,27 @@
 PROJECTS="/projects"
 TEMPLATES="$PROJECTS/templates"
 
+TO_USER=infra
+TO_HOST=sankhara
+
+while [ -n "$1" ]; do
+	case "$1" in
+		-h)
+			TO_HOST="$2"
+			shift
+			shift
+			;;
+		-u)
+			TO_USER="$2"
+			shift
+			shift
+			;;
+		*)
+			break
+			;;
+	esac
+done
+
 if [ -z "$1" ]; then
 	echo "Usage: $0 <project> [username]" >&2
 	exit 1
@@ -15,10 +36,10 @@ else
 	PROJECT_USER="$LOGNAME"
 fi
 
-if [ ! -f $PROJECTS/$NAME/sankhara/etc/bashrc-$PROJECT_USER ]; then
+if [ ! -f $PROJECTS/$NAME/$TO_HOST/etc/bashrc-$PROJECT_USER ]; then
 	echo "$0: No known user given" >&2
 	echo "Usage: $0 <project> [username]" >&2
 	exit 1
 fi
 
-chroot $PROJECTS/$NAME/sankhara su - infra -c /knsetup/bootstrap-shell.sh $PROJECT_USER
+chroot $PROJECTS/$NAME/$TO_HOST su - $TO_USER -c /knsetup/bootstrap-shell.sh $PROJECT_USER
