@@ -90,3 +90,5 @@ chown root:infra /knsetup/finish-sankhara-fstemplate-infra.sh
 chmod 454 /knsetup/finish-sankhara-fstemplate-infra.sh
 
 sudo -u infra sh /knsetup/finish-sankhara-fstemplate-infra.sh
+
+/var/lib/mailman/bin/check_perms -f
