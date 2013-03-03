@@ -4,8 +4,15 @@ set -ev
 
 install -m 0555 /knsetup/set-git-credentials /usr/local/bin/
 
-# Don't start MongoDB directly from apt-get install
-echo "ENABLE_MONGODB=no" > /etc/default/mongodb
+# Don't start MongoDB etc directly from apt-get install
+cat <<EOF > /usr/sbin/policy-rc.d
+#!/bin/sh
+
+exit 101
+EOF
+chmod 555 /usr/sbin/policy-rc.d
+
+rsync -a /knsetup/lighttpd-config/ /etc/lighttpd/
 
 # Preseed some packages to stop them from asking questions
 cat <<EOF | debconf-set-selections
@@ -28,7 +35,7 @@ apt-get install -y equivs
 	dpkg -i *.deb
 )
 
-apt-get install -y git ffmpeg php5-cli php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen nvi
+apt-get install -y git ffmpeg php5-cli php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen nvi lighttpd
 apt-get install -y --no-install-recommends ipython
 # mongodb-10gen gebruiken we voorlopig nog algemeen op khandhas
 # mysql-server moet hier ook nog bij maar die crashen de installatie (en gebruiken we voorlopig nog algemeen op khandhas)
@@ -36,7 +43,7 @@ apt-get install -y --no-install-recommends ipython
 
 pip install pymongo
 
-rm /etc/default/mongodb
+rm /usr/sbin/policy-rc.d
 
 for i in /knsetup/profiles/*; do
 	cp $i /etc/bashrc-`basename $i`

@@ -46,6 +46,7 @@ prepare_git_repo /srv/karpenoktem.nl/htdocs/site
 . /root/configuration.sh
 
 sed "s/%PORTNR%/$PORT_MONGODB/g" < /knsetup/mongodb.conf > /etc/mongodb.conf
+sed -i "s/%PORTNR%/$PORT_LIGHTTPD/g" /etc/lighttpd/lighttpd.conf
 
 # Setup config.php for knfotos
 sed -e 's@/path/to/fotos/@/var/fotos/@g' \
