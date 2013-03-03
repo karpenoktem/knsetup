@@ -3,7 +3,7 @@
 set -ev
 
 apt-get update
-apt-get install -y sudo python python-django msgpack-python
+apt-get install -y sudo python python-django msgpack-python screen
 
 mkdir /var/run/infra
 mkdir /root/kninfra
