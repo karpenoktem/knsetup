@@ -1,0 +1,6 @@
+export GIT_AUTHOR_NAME="Jille Timmermans"
+export GIT_AUTHOR_EMAIL="jille@karpenoktem.nl"
+export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+
+alias vi=nvi

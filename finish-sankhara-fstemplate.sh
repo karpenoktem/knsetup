@@ -28,7 +28,7 @@ apt-get install -y equivs
 	dpkg -i *.deb
 )
 
-apt-get install -y git ffmpeg php5-cli php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen
+apt-get install -y git ffmpeg php5-cli php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen nvi
 apt-get install -y --no-install-recommends ipython
 # mongodb-10gen gebruiken we voorlopig nog algemeen op khandhas
 # mysql-server moet hier ook nog bij maar die crashen de installatie (en gebruiken we voorlopig nog algemeen op khandhas)
@@ -37,6 +37,16 @@ apt-get install -y --no-install-recommends ipython
 pip install pymongo
 
 rm /etc/default/mongodb
+
+for i in /knsetup/profiles/*; do
+	cp $i /etc/bashrc-$i
+done
+cat <<EOF >> /etc/bash.bashrc
+
+if [ -n "\$PROJECT_USER" -a -f "/etc/profile-\$PROJECT_USER" ]; then
+	. "/etc/bashrc-\$PROJECT_USER"
+fi
+EOF
 
 addgroup --gid 999 infra
 addgroup --gid 1000 kn

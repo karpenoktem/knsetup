@@ -1,0 +1,24 @@
+#!/bin/sh
+
+PROJECTS="/projects"
+TEMPLATES="$PROJECTS/templates"
+
+if [ -z "$1" ]; then
+	echo "Usage: $0 <project> [username]" >&2
+	exit 1
+fi
+
+NAME="$1"
+if [ -n "$1" ]; then
+	export PROJECT_USER="$2"
+else
+	export PROJECT_USER="$LOGNAME"
+fi
+
+if [ ! -f $PROJECTS/$NAME/etc/bashrc-$PROJECT_USER ]; then
+	echo "$0: No known user given" >&2
+	echo "Usage: $0 <project> [username]" >&2
+	exit 1
+fi
+
+chroot $PROJECTS/$NAME su - infra
