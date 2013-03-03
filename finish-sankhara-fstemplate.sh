@@ -43,7 +43,7 @@ for i in /knsetup/profiles/*; do
 done
 cat <<EOF >> /etc/bash.bashrc
 
-if [ -n "\$PROJECT_USER" -a -f "/etc/profile-\$PROJECT_USER" ]; then
+if [ -n "\$PROJECT_USER" -a -f "/etc/bashrc-\$PROJECT_USER" ]; then
 	. "/etc/bashrc-\$PROJECT_USER"
 fi
 EOF
