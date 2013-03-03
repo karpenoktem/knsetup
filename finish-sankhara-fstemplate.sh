@@ -20,6 +20,24 @@ mailman	mailman/queue_files_present	select	abort installation
 mailman	mailman/used_languages	string	
 mailman	mailman/default_server_language	select	en
 mailman	mailman/create_site_list	note	
+postfix	postfix/root_address	string	
+postfix	postfix/rfc1035_violation	boolean	false
+postfix	postfix/retry_upgrade_warning	boolean	
+postfix	postfix/kernel_version_warning	boolean	
+postfix	postfix/mydomain_warning	boolean	
+postfix	postfix/mynetworks	string	127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+postfix	postfix/not_configured	error	
+postfix	postfix/relayhost	string	10.0.0.1
+postfix	postfix/mailbox_limit	string	0
+postfix	postfix/procmail	boolean	false
+postfix	postfix/bad_recipient_delimiter	error	
+postfix	postfix/protocols	select	ipv4
+postfix	postfix/mailname	string	%PROJECT_NAME%.test.karpenoktem.nl
+postfix	postfix/tlsmgr_upgrade_warning	boolean	
+postfix	postfix/recipient_delim	string	+
+postfix	postfix/main_mailer_type	select	Internet with smarthost
+postfix	postfix/destinations	string	%PROJECT_NAME%.test.karpenoktem.nl, localhost.localdomain, localhost
+postfix	postfix/chattr	boolean	false
 EOF
 
 gpg --keyserver subkeys.pgp.net --recv-keys 9ECBEC467F0CEB10
@@ -33,11 +51,10 @@ apt-get install -y equivs
 	dpkg -i *.deb
 )
 
-apt-get install -y git ffmpeg php5-cli php5-cgi php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen nvi lighttpd python-flup php-pear
+apt-get install -y git ffmpeg php5-cli php5-cgi php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen nvi lighttpd python-flup php-pear postfix
 apt-get install -y --no-install-recommends ipython
 # mongodb-10gen gebruiken we voorlopig nog algemeen op khandhas
 # mysql-server moet hier ook nog bij maar die crashen de installatie (en gebruiken we voorlopig nog algemeen op khandhas)
-# postfix moet hier ook nog bij, maar die stelt vragen
 
 pip install pymongo
 pecl install mongo
