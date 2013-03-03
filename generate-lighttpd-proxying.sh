@@ -9,7 +9,7 @@ for i in $PROJECTS/*/sankhara/root/configuration.sh; do
 	if [ -n "$PORT" ]; then
 		cat <<EOF >> /etc/lighttpd/proxying.conf-new
 \$HTTP["host"] =~ "(?:www\.)?$NAME\.test\.(kn\.cx|karpenoktem\.(nl|com))" {
-	proxy.server = ( "" => ( ( "host" => "10.0.0.3", "port" => $PORT ) ) )
+	proxy.server = ( "" => ( ( "host" => "127.0.0.1", "port" => $PORT ) ) )
 }
 EOF
 	fi
