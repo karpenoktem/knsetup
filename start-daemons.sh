@@ -7,6 +7,8 @@ if [ -z "$1" ]; then
 	exit 1
 fi
 
+unset STY
+
 case "$1" in
 	--start-sankhara)
 		export PYTHONPATH=/home/infra/py
