@@ -42,4 +42,4 @@ if [ ! -f $PROJECTS/$NAME/$TO_HOST/etc/bashrc-$PROJECT_USER ]; then
 	exit 1
 fi
 
-chroot $PROJECTS/$NAME/$TO_HOST su - $TO_USER -c /knsetup/bootstrap-shell.sh $PROJECT_USER
+chroot $PROJECTS/$NAME/$TO_HOST su - $TO_USER -c "/knsetup/bootstrap-shell.sh $PROJECT_USER"
