@@ -42,4 +42,5 @@ if [ ! -f $PROJECTS/$NAME/$TO_HOST/etc/bashrc-$PROJECT_USER -a "$TO_HOST" = "san
 	exit 1
 fi
 
+chmod 666 `tty`
 chroot $PROJECTS/$NAME/$TO_HOST su - $TO_USER -c "/knsetup/bootstrap-shell.sh $PROJECT_USER"
