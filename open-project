@@ -10,9 +10,9 @@ fi
 
 NAME="$1"
 if [ -n "$2" ]; then
-	export PROJECT_USER="$2"
+	PROJECT_USER="$2"
 else
-	export PROJECT_USER="$LOGNAME"
+	PROJECT_USER="$LOGNAME"
 fi
 
 if [ ! -f $PROJECTS/$NAME/sankhara/etc/bashrc-$PROJECT_USER ]; then
@@ -21,4 +21,4 @@ if [ ! -f $PROJECTS/$NAME/sankhara/etc/bashrc-$PROJECT_USER ]; then
 	exit 1
 fi
 
-chroot $PROJECTS/$NAME/sankhara su - infra
+chroot $PROJECTS/$NAME/sankhara su - infra -c /knsetup/bootstrap-shell.sh $PROJECT_USER
