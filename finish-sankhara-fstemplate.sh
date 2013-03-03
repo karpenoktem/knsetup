@@ -32,11 +32,11 @@ postfix	postfix/mailbox_limit	string	0
 postfix	postfix/procmail	boolean	false
 postfix	postfix/bad_recipient_delimiter	error	
 postfix	postfix/protocols	select	ipv4
-postfix	postfix/mailname	string	%PROJECT_NAME%.test.karpenoktem.nl
+postfix	postfix/mailname	string	PROJECT_NAME.test.karpenoktem.nl
 postfix	postfix/tlsmgr_upgrade_warning	boolean	
 postfix	postfix/recipient_delim	string	+
 postfix	postfix/main_mailer_type	select	Internet with smarthost
-postfix	postfix/destinations	string	%PROJECT_NAME%.test.karpenoktem.nl, localhost.localdomain, localhost
+postfix	postfix/destinations	string	PROJECT_NAME.test.karpenoktem.nl, localhost.localdomain, localhost
 postfix	postfix/chattr	boolean	false
 EOF
 
