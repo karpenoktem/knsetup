@@ -39,7 +39,7 @@ pip install pymongo
 rm /etc/default/mongodb
 
 for i in /knsetup/profiles/*; do
-	cp $i /etc/bashrc-$i
+	cp $i /etc/bashrc-`basename $i`
 done
 cat <<EOF >> /etc/bash.bashrc
 
