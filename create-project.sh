@@ -105,3 +105,5 @@ cp -pr $TEMPLATES/db-$DBTPL/ $PROJECTS/$NAME/sankhara/root/dbtemplate
 chmod 544 $PROJECTS/$NAME/sankhara/knsetup/finish-sankhara-project.sh $PROJECTS/$NAME/phassa/knsetup/finish-phassa-project.sh
 chroot $PROJECTS/$NAME/sankhara /knsetup/finish-sankhara-project.sh $NAME
 chroot $PROJECTS/$NAME/phassa /knsetup/finish-phassa-project.sh $NAME
+
+sh ./generate-lighttpd-proxying.sh
