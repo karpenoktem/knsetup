@@ -62,6 +62,10 @@ addgroup --gid 1001 interinfra
 addgroup --gid 501 fotos
 adduser --uid 1000 --gid 999 infra --gecos ",,," --disabled-password
 adduser --uid 501 --gid 501 fotos --gecos ",,," --disabled-password
+gpasswd -a infra list
+gpasswd -a infra interinfra
+gpasswd -a www-data interinfra
+gpasswd -a fotos interinfra
 
 mkdir -p /var/run/infra
 chown infra:interinfra /var/run/infra
