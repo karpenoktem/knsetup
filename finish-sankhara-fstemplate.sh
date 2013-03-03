@@ -12,9 +12,6 @@ exit 101
 EOF
 chmod 555 /usr/sbin/policy-rc.d
 
-rm -rf /etc/lighttpd
-cp -pr /knsetup/lighttpd-config/ /etc/lighttpd/
-
 # Preseed some packages to stop them from asking questions
 cat <<EOF | debconf-set-selections
 mailman	mailman/gate_news	boolean	false
@@ -45,6 +42,9 @@ apt-get install -y --no-install-recommends ipython
 pip install pymongo
 
 rm /usr/sbin/policy-rc.d
+
+rm -rf /etc/lighttpd
+cp -pr /knsetup/lighttpd-config/ /etc/lighttpd/
 
 for i in /knsetup/profiles/*; do
 	cp $i /etc/bashrc-`basename $i`
