@@ -33,6 +33,11 @@ if [ ! -d "$TEMPLATES/db-$DBTPL" ]; then
 	exit 1
 fi
 
+PORT_BASE=$((`(
+	echo 13000
+	grep '^PORT_BASE' $PROJECTS/*/sankhara/root/configuration.sh | sed 's/.*=//g'
+) | sort | tail -1`+10))
+
 mkdir $PROJECTS/$NAME
 mkdir $PROJECTS/$NAME/sankhara
 mkdir $PROJECTS/$NAME/phassa
@@ -90,6 +95,9 @@ PASSWORD_WIKI='`pwgen -s1`'
 PASSWORD_KNFOTOS='`pwgen -s1`'
 PASSWORD_FORUM='`pwgen -s1`'
 PASSWORD_CHUCK_NORRIS='`pwgen -s1`'
+PORT_BASE=$PORT_BASE
+PORT_LIGHTTPD=$(($PORT_BASE+0))
+PORT_MONGODB=$(($PORT_BASE+1))
 EOF
 
 cp -pr $TEMPLATES/db-$DBTPL/ $PROJECTS/$NAME/sankhara/root/dbtemplate

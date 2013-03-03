@@ -45,7 +45,7 @@ prepare_git_repo /srv/karpenoktem.nl/htdocs/site
 
 . /root/configuration.sh
 
-sed "s/%PORTNR%/$(($RANDOM%65536+32768))/g" < /knsetup/mongodb.conf > /etc/mongodb.conf
+sed "s/%PORTNR%/$PORT_MONGODB/g" < /knsetup/mongodb.conf > /etc/mongodb.conf
 
 # Setup config.php for knfotos
 sed -e 's@/path/to/fotos/@/var/fotos/@g' \
