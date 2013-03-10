@@ -92,9 +92,6 @@ EOF
 chown www-data:interinfra /srv/karpenoktem.nl/htdocs/site/config.php
 chmod 600 /srv/karpenoktem.nl/htdocs/site/config.php
 
-export PYTHONPATH=/home/infra/py
-sh /knsetup/load-data.sh $NAME || true
-
 cat <<EOF > /srv/karpenoktem.nl/htdocs/site/config.agenda.php
 <?php
 	// To be generated
@@ -102,3 +99,6 @@ cat <<EOF > /srv/karpenoktem.nl/htdocs/site/config.agenda.php
 ?>
 EOF
 chown infra /srv/karpenoktem.nl/htdocs/site/config.agenda.php
+
+export PYTHONPATH=/home/infra/py
+sh /knsetup/load-data.sh $NAME || true
