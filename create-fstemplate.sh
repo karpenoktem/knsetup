@@ -15,7 +15,7 @@ done
 SANKHARA="$TEMPLATES/sankhara-$TPLID"
 PHASSA="$TEMPLATES/phassa-$TPLID"
 
-debootstrap squeeze $SANKHARA http://ftp.nl.debian.org/debian
+cdebootstrap squeeze $SANKHARA http://ftp.nl.debian.org/debian
 cp /etc/hosts $SANKHARA/etc/hosts
 cp /etc/apt/sources.list $SANKHARA/etc/apt/
 mkdir $SANKHARA/knsetup
