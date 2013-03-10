@@ -25,4 +25,4 @@ python /home/infra/repo/utils/anonymized-dump/restore.py
 	echo "CREATE DATABASE prj_${NAME}_fotos;"
 	echo "GRANT ALL PRIVILEGES ON prj_${NAME}_fotos.* TO prj_${NAME}_fotos@localhost;"
 ) | mysql
-mysql prj_$NAME_fotos < fotos.sql
+mysql prj_${NAME}_fotos < fotos.sql
