@@ -38,6 +38,15 @@ postfix	postfix/recipient_delim	string	+
 postfix	postfix/main_mailer_type	select	Internet with smarthost
 postfix	postfix/destinations	string	PROJECT_NAME.test.karpenoktem.nl, localhost.localdomain, localhost
 postfix	postfix/chattr	boolean	false
+mysql-server-5.1	mysql-server/root_password_again	password	
+mysql-server-5.1	mysql-server/root_password	password	
+mysql-server-5.1	mysql-server/error_setting_password	error	
+mysql-server-5.1	mysql-server-5.1/nis_warning	note	
+mysql-server-5.1	mysql-server-5.1/really_downgrade	boolean	false
+mysql-server-5.1	mysql-server-5.1/start_on_boot	boolean	true
+mysql-server-5.1	mysql-server-5.1/postrm_remove_databases	booleanfalse
+mysql-server-5.1	mysql-server/password_mismatch	error	
+mysql-server-5.1	mysql-server/no_upgrade_when_using_ndb	error	
 EOF
 
 gpg --keyserver subkeys.pgp.net --recv-keys 9ECBEC467F0CEB10
@@ -51,10 +60,9 @@ apt-get install -y equivs
 	dpkg -i *.deb
 )
 
-apt-get install -y git ffmpeg php5-cli php5-cgi php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen nvi lighttpd python-flup php-pear postfix
+apt-get install -y git ffmpeg php5-cli php5-cgi php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen nvi lighttpd python-flup php-pear postfix mysql-server
 apt-get install -y --no-install-recommends ipython
 # mongodb-10gen gebruiken we voorlopig nog algemeen op khandhas
-# mysql-server moet hier ook nog bij maar die crashen de installatie (en gebruiken we voorlopig nog algemeen op khandhas)
 
 pip install pymongo
 pecl install mongo

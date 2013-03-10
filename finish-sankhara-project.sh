@@ -48,6 +48,7 @@ prepare_git_repo /srv/karpenoktem.nl/htdocs/site
 sed "s/%PORTNR%/$PORT_MONGODB/g" < /knsetup/mongodb.conf > /etc/mongodb.conf
 sed "s/%PROJECT_NAME%/$NAME/g" < /knsetup/mm_cfg.py > /etc/mailman/mm_cfg.py
 sed -i -e "s/%PORTNR%/$PORT_LIGHTTPD/g" -e "s/%PROJECT_NAME%/$NAME/g" /etc/lighttpd/lighttpd.conf
+sed -i "s/3306/$PORT_MYSQLD/g" /etc/mysql/my.cnf
 sed -i "s/%PROJECT_NAME%/$NAME/g" /etc/lighttpd/rewrites.conf
 
 ln -s karpenoktem.nl /srv/$HTTP_DOMAIN
