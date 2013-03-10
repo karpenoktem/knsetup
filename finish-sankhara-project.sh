@@ -100,5 +100,10 @@ cat <<EOF > /srv/karpenoktem.nl/htdocs/site/config.agenda.php
 EOF
 chown infra /srv/karpenoktem.nl/htdocs/site/config.agenda.php
 
+(
+	cd /srv/karpenoktem.nl/htdocs/site/
+	./utils/install > config.release.php
+)
+
 export PYTHONPATH=/home/infra/py
 sh /knsetup/load-data.sh $NAME || true
