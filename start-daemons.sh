@@ -12,6 +12,7 @@ unset STY
 case "$1" in
 	--start-sankhara)
 		export PYTHONPATH=/home/infra/py
+		service lighttpd start
 		cd /home/infra/repo/utils/
 		screen -d -m -S daan python daan.py
 		su -c "screen -d -m -S infra python giedo.py" infra
