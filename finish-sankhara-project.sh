@@ -108,5 +108,29 @@ chown infra /srv/karpenoktem.nl/htdocs/site/config.agenda.php
 	./utils/install > config.release.php
 )
 
+cat <<EOF > /srv/karpenoktem.nl/htdocs/forum/config.php
+<?php
+$db_type = 'mysqli';
+$db_host = 'localhost';
+$db_name = 'prj_${NAME}_punbb';
+$db_username = 'prj_{$NAME}_punbb';
+$db_password = '$PASSWORD_FORUM';
+$db_prefix = '';
+$p_connect = false;
+
+$base_url = 'http://$HTTP_DOMAIN/forum';
+
+$cookie_name = 'forum_cookie_`pwgen -1s`';
+$cookie_domain = '';
+$cookie_path = '/';
+$cookie_secure = 0;
+
+define('FORUM', 1);
+define('FORUM_DEBUG', 1);
+?>
+EOF
+chown www-data:www-data /srv/karpenoktem.nl/htdocs/forum/config.php
+chmod 400 /srv/karpenoktem.nl/htdocs/forum/config.php
+
 export PYTHONPATH=/home/infra/py
 sh /knsetup/load-data.sh $NAME || true
