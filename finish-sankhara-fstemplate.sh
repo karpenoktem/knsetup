@@ -107,6 +107,9 @@ git clone git://github.com/karpenoktem/mediawiki.git mediawiki
 git clone git://github.com/karpenoktem/knsite site
 ln -s karpenoktem.nl /srv/default
 
+chown www-data /srv/karpenoktem.nl/htdocs/forum/cache
+chown www-data /srv/karpenoktem.nl/htdocs/forum/img/avatars
+
 mkdir -p /var/fotos
 mkdir -p /var/cache/fotos
 chown fotos:fotos /var/fotos /var/cache/fotos
