@@ -81,6 +81,14 @@ sed -e "s/karpenoktem.nl/$HTTP_DOMAIN/g" \
 chown infra:infra /home/infra/repo/kn/settings.py
 chmod 600 /home/infra/repo/kn/settings.py
 
+sed -e "s/%HTTP_DOMAIN%/$HTTP_DOMAIN/g" \
+    -e "s/%MYSQL_DB%/prj_${NAME}_wiki/g" \
+    -e "s/%MYSQL_USER%/prj_${NAME}_wiki/g" \
+    -e "s/%MYSQL_PASSWORD%/$PASSWORD_WIKI/g" \
+         < /knsetup/mediawiki-LocalSettings.php > /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
+chown www-data:infra /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
+chmod 600 /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
+
 cat <<EOF > /srv/karpenoktem.nl/htdocs/site/config.php
 <?php
 	\$cfg['curi'] = '$HTTP_DOMAIN/';
