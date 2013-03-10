@@ -62,7 +62,7 @@ mysql-server-5.1	mysql-server/password_mismatch	error
 mysql-server-5.1	mysql-server/no_upgrade_when_using_ndb	error	
 EOF
 
-apt-get install -y git ffmpeg php5-cli php5-cgi php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen nvi lighttpd python-flup php-pear postfix mysql-server
+apt-get install -y git ffmpeg php5-cli php5-cgi php5-mysql php5-memcache php5-curl php5-intl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen nvi lighttpd python-flup php-pear postfix mysql-server
 apt-get install -y --no-install-recommends ipython
 # mongodb-10gen gebruiken we voorlopig nog algemeen op khandhas
 
