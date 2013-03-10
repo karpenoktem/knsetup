@@ -120,7 +120,7 @@ $p_connect = false;
 
 $base_url = 'http://$HTTP_DOMAIN/forum';
 
-$cookie_name = 'forum_cookie_`pwgen -1s`';
+$cookie_name = 'forum_cookie_`pwgen -1s 6`';
 $cookie_domain = '';
 $cookie_path = '/';
 $cookie_secure = 0;
