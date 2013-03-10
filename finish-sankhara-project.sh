@@ -50,6 +50,8 @@ sed "s/%PROJECT_NAME%/$NAME/g" < /knsetup/mm_cfg.py > /etc/mailman/mm_cfg.py
 sed -i -e "s/%PORTNR%/$PORT_LIGHTTPD/g" -e "s/%PROJECT_NAME%/$NAME/g" /etc/lighttpd/lighttpd.conf
 sed -i "s/%PROJECT_NAME%/$NAME/g" /etc/lighttpd/rewrites.conf
 
+ln -s karpenoktem.nl /srv/$HTTP_DOMAIN
+
 # Setup config.php for knfotos
 sed -e 's@/path/to/fotos/@/var/fotos/@g' \
     -e 's@/path/to/cache/@/var/cache/fotos/@g' \
