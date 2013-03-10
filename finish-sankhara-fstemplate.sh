@@ -12,6 +12,18 @@ exit 101
 EOF
 chmod 555 /usr/sbin/policy-rc.d
 
+gpg --keyserver subkeys.pgp.net --recv-keys 9ECBEC467F0CEB10
+gpg --export --armor 9ECBEC467F0CEB10 | apt-key add -
+apt-get update
+
+apt-get install -y equivs pwgen
+(
+	cd /knsetup
+	equivs-build fake-mta.equivs
+	equivs-build fake-httpd.equivs
+	dpkg -i *.deb
+)
+
 # Preseed some packages to stop them from asking questions
 MYSQL_ROOT_PASSWORD=`pwgen -s1 32`
 cat <<EOF | debconf-set-selections
@@ -49,17 +61,6 @@ mysql-server-5.1	mysql-server-5.1/postrm_remove_databases	booleanfalse
 mysql-server-5.1	mysql-server/password_mismatch	error	
 mysql-server-5.1	mysql-server/no_upgrade_when_using_ndb	error	
 EOF
-
-gpg --keyserver subkeys.pgp.net --recv-keys 9ECBEC467F0CEB10
-gpg --export --armor 9ECBEC467F0CEB10 | apt-key add -
-apt-get update
-apt-get install -y equivs
-(
-	cd /knsetup
-	equivs-build fake-mta.equivs
-	equivs-build fake-httpd.equivs
-	dpkg -i *.deb
-)
 
 apt-get install -y git ffmpeg php5-cli php5-cgi php5-mysql php5-memcache php5-curl memcached sudo python python-django python-m2crypto python-mysqldb python-gdata msgpack-python python-pymongo msgpack-python mailman python-pyparsing python-imaging python-markdown python-pip build-essential python-dev mysql-client screen nvi lighttpd python-flup php-pear postfix mysql-server
 apt-get install -y --no-install-recommends ipython
