@@ -141,5 +141,8 @@ EOF
 chown www-data:www-data /srv/karpenoktem.nl/htdocs/forum/config.php
 chmod 400 /srv/karpenoktem.nl/htdocs/forum/config.php
 
+cd /srv/karpenoktem.nl/htdocs/mediawiki/maintenance
+php install.php --confpath /tmp --dbname "prj_${NAME}_wiki" --dbuser "prj_${NAME}_wiki" --dbpass "$PASSWORD_WIKI" --pass "$PASSWORD_WIKI_ADMIN" --server "http://$HTTP_DOMAIN" KnWiki Admin
+
 export PYTHONPATH=/home/infra/py
 sh /knsetup/load-data.sh $NAME || true

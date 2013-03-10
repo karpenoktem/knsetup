@@ -91,6 +91,7 @@ cat <<EOF > $PROJECTS/$NAME/sankhara/root/configuration.sh
 HTTP_DOMAIN=$NAME.test.karpenoktem.nl
 PASSWORD_SECRET_KEY='`pwgen -s1 60`'
 PASSWORD_WIKI_PROXY_KEY='`pwgen -s1 256 | sha256sum`'
+PASSWORD_WIKI_ADMIN='`pwgen -s1`'
 PASSWORD_MAILMAN_LISTDEFAULT='`pwgen -s1`'
 PASSWORD_WIKI='`pwgen -s1`'
 PASSWORD_KNFOTOS='`pwgen -s1`'
