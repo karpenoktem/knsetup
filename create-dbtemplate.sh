@@ -19,3 +19,5 @@ python /home/infra/repo/utils/anonymized-dump/create.py
 mysqldump fotos > fotos.sql
 # mysqldump punbb > punbb.sql # XXX strip all personal data
 # mysqldump wiki > wiki.sql # XXX strip all personal data
+
+echo "Created dbtemplate $TPLID"

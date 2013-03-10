@@ -35,3 +35,5 @@ chmod 544 $PHASSA/knsetup/finish-phassa-fstemplate.sh
 mount_special_filesystems $PHASSA
 chroot $PHASSA /knsetup/finish-phassa-fstemplate.sh
 umount_special_filesystems $PHASSA
+
+echo "Created fstemplate $TPLID"
