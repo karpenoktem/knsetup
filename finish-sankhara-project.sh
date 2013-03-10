@@ -81,15 +81,6 @@ sed -e "s/karpenoktem.nl/$HTTP_DOMAIN/g" \
 chown infra:infra /home/infra/repo/kn/settings.py
 chmod 600 /home/infra/repo/kn/settings.py
 
-sed -e "s/%HTTP_DOMAIN%/$HTTP_DOMAIN/g" \
-    -e "s/%MYSQL_DB%/prj_${NAME}_wiki/g" \
-    -e "s/%MYSQL_USER%/prj_${NAME}_wiki/g" \
-    -e "s/%MYSQL_PASSWORD%/$PASSWORD_WIKI/g" \
-    -e "s/%PROXY_KEY%/$PASSWORD_WIKI_PROXY_KEY/g" \
-         < /knsetup/mediawiki-LocalSettings.php > /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
-chown www-data:infra /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
-chmod 600 /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
-
 cat <<EOF > /srv/karpenoktem.nl/htdocs/site/config.php
 <?php
 	\$cfg['curi'] = '$HTTP_DOMAIN/';
@@ -143,6 +134,15 @@ chmod 400 /srv/karpenoktem.nl/htdocs/forum/config.php
 
 cd /srv/karpenoktem.nl/htdocs/mediawiki/maintenance
 php install.php --confpath /tmp --dbname "prj_${NAME}_wiki" --dbuser "prj_${NAME}_wiki" --dbpass "$PASSWORD_WIKI" --pass "$PASSWORD_WIKI_ADMIN" --server "http://$HTTP_DOMAIN" KnWiki Admin
+
+sed -e "s/%HTTP_DOMAIN%/$HTTP_DOMAIN/g" \
+    -e "s/%MYSQL_DB%/prj_${NAME}_wiki/g" \
+    -e "s/%MYSQL_USER%/prj_${NAME}_wiki/g" \
+    -e "s/%MYSQL_PASSWORD%/$PASSWORD_WIKI/g" \
+    -e "s/%PROXY_KEY%/$PASSWORD_WIKI_PROXY_KEY/g" \
+         < /knsetup/mediawiki-LocalSettings.php > /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
+chown www-data:infra /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
+chmod 600 /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
 
 export PYTHONPATH=/home/infra/py
 sh /knsetup/load-data.sh $NAME || true
