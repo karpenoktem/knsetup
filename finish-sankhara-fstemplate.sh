@@ -13,6 +13,7 @@ EOF
 chmod 555 /usr/sbin/policy-rc.d
 
 # Preseed some packages to stop them from asking questions
+MYSQL_ROOT_PASSWORD=`pwgen -s1 32`
 cat <<EOF | debconf-set-selections
 mailman	mailman/gate_news	boolean	false
 mailman	mailman/site_languages	multiselect	en
@@ -38,8 +39,8 @@ postfix	postfix/recipient_delim	string	+
 postfix	postfix/main_mailer_type	select	Internet with smarthost
 postfix	postfix/destinations	string	PROJECT_NAME.test.karpenoktem.nl, localhost.localdomain, localhost
 postfix	postfix/chattr	boolean	false
-mysql-server-5.1	mysql-server/root_password_again	password	
-mysql-server-5.1	mysql-server/root_password	password	
+mysql-server-5.1	mysql-server/root_password_again	password	$MYSQL_ROOT_PASSWORD
+mysql-server-5.1	mysql-server/root_password	password	$MYSQL_ROOT_PASSWORD
 mysql-server-5.1	mysql-server/error_setting_password	error	
 mysql-server-5.1	mysql-server-5.1/nis_warning	note	
 mysql-server-5.1	mysql-server-5.1/really_downgrade	boolean	false
