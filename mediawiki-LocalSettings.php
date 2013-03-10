@@ -104,7 +104,7 @@ $wgLocalInterwiki   = $wgSitename;
 
 $wgLanguageCode = "nl";
 
-$wgProxyKey = "069877990b86c9e98e72b97e3681d3d1493dcc941c01405dcc19471352aa6b56";
+$wgProxyKey = '%PROXY_KEY%';
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, ie 'standard', 'nostalgia', 'cologneblue', 'monobook':

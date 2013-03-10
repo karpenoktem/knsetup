@@ -85,6 +85,7 @@ sed -e "s/%HTTP_DOMAIN%/$HTTP_DOMAIN/g" \
     -e "s/%MYSQL_DB%/prj_${NAME}_wiki/g" \
     -e "s/%MYSQL_USER%/prj_${NAME}_wiki/g" \
     -e "s/%MYSQL_PASSWORD%/$PASSWORD_WIKI/g" \
+    -e "s/%PROXY_KEY%/$PASSWORD_WIKI_PROXY_KEY/g" \
          < /knsetup/mediawiki-LocalSettings.php > /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
 chown www-data:infra /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
 chmod 600 /srv/karpenoktem.nl/htdocs/mediawiki/LocalSettings.php
