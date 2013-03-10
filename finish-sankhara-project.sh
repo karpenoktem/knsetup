@@ -77,3 +77,28 @@ sed -e "s/karpenoktem.nl/$HTTP_DOMAIN/g" \
 		 < /home/infra/repo/kn/settings.example.py > /home/infra/repo/kn/settings.py
 chown infra:infra /home/infra/repo/kn/settings.py
 chmod 600 /home/infra/repo/kn/settings.py
+
+cat <<EOF > /srv/karpenoktem.nl/htdocs/site/config.php
+<?php
+	$cfg['curi'] = '$HTTP_DOMAIN/';
+	$cfg['auri'] = '$HTTP_DOMAIN/';
+
+	$cfg['forum']['user'] = 'prj_${NAME}_punbb';
+	$cfg['forum']['password'] = '$PASSWORD_FORUM';
+	$cfg['forum']['db'] = 'prj_${NAME}_punbb';
+	$cfg['forum']['topicUri'] = 'http://$HTTP_DOMAIN/forum/viewtopic.php?id=';
+?>
+EOF
+chown www-data:interinfra /srv/karpenoktem.nl/htdocs/site/config.php
+chmod 600 /srv/karpenoktem.nl/htdocs/site/config.php
+
+export PYTHONPATH=/home/infra/py
+sh /knsetup/load-data.sh $NAME || true
+
+cat <<EOF > /srv/karpenoktem.nl/htdocs/site/config.agenda.php
+<?php
+	// To be generated
+	$cfg['agenda'] = array();
+?>
+EOF
+chown infra /srv/karpenoktem.nl/htdocs/site/config.agenda.php

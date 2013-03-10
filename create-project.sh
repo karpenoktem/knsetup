@@ -107,3 +107,6 @@ chroot $PROJECTS/$NAME/sankhara /knsetup/finish-sankhara-project.sh $NAME
 chroot $PROJECTS/$NAME/phassa /knsetup/finish-phassa-project.sh $NAME
 
 sh ./generate-lighttpd-proxying.sh
+# Don't forget to reload the lighttpd config
+
+sh start-daemons.sh $NAME
