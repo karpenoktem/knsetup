@@ -113,5 +113,9 @@ sh ./generate-lighttpd-proxying.sh
 
 sh start-daemons.sh $NAME
 chroot $PROJECTS/$NAME/sankhara su - infra -c "/knsetup/bootstrap-shell.sh infra /home/infra/bin/update-site-agenda"
+(
+	chroot $PROJECTS/$NAME/sankhara su - infra -c "/knsetup/bootstrap-shell.sh infra /home/infra/bin/giedo-sync"
+	chroot $PROJECTS/$NAME/sankhara /var/lib/mailman/bin/check_perms -f
+) >/dev/null 2>&1 < /dev/null &
 
 # Don't forget to reload the lighttpd config
