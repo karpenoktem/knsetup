@@ -38,7 +38,7 @@ umount_special_filesystems $PHASSA
 
 rm -f $TEMPLATES/sankhara-latest
 rm -f $TEMPLATES/phassa-latest
-ln -s $TEMPLATES/sankhara-latest sankhara-$TPLID
-ln -s $TEMPLATES/phassa-latest phassa-$TPLID
+ln -s sankhara-$TPLID $TEMPLATES/sankhara-latest
+ln -s phassa-$TPLID $TEMPLATES/phassa-latest
 
 echo "Created fstemplate $TPLID"
