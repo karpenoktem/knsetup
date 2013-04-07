@@ -2,11 +2,10 @@
 
 set -ev
 
-install -m 0555 /knsetup/groupadd /usr/local/sbin/
-chmod -x /usr/sbin/groupadd
+install -m 0555 /knsetup/groupadd /usr/sbin/
 
 apt-get update
-apt-get install -y sudo python python-django msgpack-python screen
+apt-get install -y sudo python python-django msgpack-python screen samba
 
 addgroup --gid 1000 kn
 
