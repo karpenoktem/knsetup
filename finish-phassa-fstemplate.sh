@@ -2,6 +2,9 @@
 
 set -ev
 
+install -m 0555 /knsetup/groupadd /usr/local/sbin/
+chmod -x /usr/sbin/groupadd
+
 apt-get update
 apt-get install -y sudo python python-django msgpack-python screen
 
