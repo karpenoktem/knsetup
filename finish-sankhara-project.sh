@@ -51,7 +51,7 @@ sed -i -e "s/%PORTNR%/$PORT_LIGHTTPD/g" -e "s/%PROJECT_NAME%/$NAME/g" /etc/light
 sed -i "s/3306/$PORT_MYSQLD/g" /etc/mysql/my.cnf
 sed -i "s/%PROJECT_NAME%/$NAME/g" /etc/lighttpd/rewrites.conf
 
-service mysql-start
+service mysql start
 
 ln -s karpenoktem.nl /srv/$HTTP_DOMAIN
 
