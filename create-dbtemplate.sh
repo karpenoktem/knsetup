@@ -20,4 +20,7 @@ mysqldump fotos > fotos.sql
 # mysqldump punbb > punbb.sql # XXX strip all personal data
 # mysqldump wiki > wiki.sql # XXX strip all personal data
 
+rm -f $TEMPLATES/db-latest
+ln -s $TEMPLATES/db-latest db-$TPLID
+
 echo "Created dbtemplate $TPLID"
