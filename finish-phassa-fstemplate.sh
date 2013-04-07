@@ -4,6 +4,10 @@ set -ev
 
 install -m 0555 /knsetup/groupadd /usr/sbin/
 
+cat <<EOF | debconf-set-selections
+samba-common    samba-common/workgroup  string  KARPENOKTEM
+EOF
+
 apt-get update
 apt-get install -y sudo python python-django msgpack-python screen samba
 
