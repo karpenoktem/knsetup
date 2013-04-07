@@ -71,6 +71,8 @@ pecl install mongo
 
 rm /usr/sbin/policy-rc.d
 
+mkdir /etc/postfix/virtual/
+
 rm -rf /etc/lighttpd
 cp -pr /knsetup/lighttpd-config/ /etc/lighttpd/
 
