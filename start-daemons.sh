@@ -12,7 +12,7 @@ unset STY
 case "$1" in
 	--start-sankhara)
 		export PYTHONPATH=/home/infra/py
-		/home/infra/bin/run-fcgi
+		su - infra -c "/knsetup/bootstrap-shell.sh infra /home/infra/bin/run-fcgi"
 		service lighttpd start
 		cd /home/infra/repo/utils/
 		screen -d -m -S daan python daan.py
