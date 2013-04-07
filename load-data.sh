@@ -18,6 +18,7 @@ fi
 cd $TEMPLATE
 sed -i 's/return/#&/g' /home/infra/repo/utils/anonymized-dump/restore.py
 python /home/infra/repo/utils/anonymized-dump/restore.py
+sed -i 's/#return/return/g' /home/infra/repo/utils/anonymized-dump/restore.py
 
 (
 	. /root/configuration.sh
@@ -28,6 +29,6 @@ python /home/infra/repo/utils/anonymized-dump/restore.py
 	echo "CREATE USER prj_${NAME}_punbb@localhost IDENTIFIED BY '$PASSWORD_FORUM';"
 	echo "CREATE DATABASE prj_${NAME}_punbb;"
 	echo "GRANT ALL PRIVILEGES ON prj_${NAME}_punbb.* TO prj_${NAME}_punbb@localhost;"
-) | mysql
-mysql prj_${NAME}_fotos < fotos.sql
-mysql prj_${NAME}_punbb < /knsetup/punbb.sql
+) | mysql --defaults-file=/etc/mysql/debian.cnf
+mysql --defaults-file=/etc/mysql/debian.cnf prj_${NAME}_fotos < fotos.sql
+mysql --defaults-file=/etc/mysql/debian.cnf prj_${NAME}_punbb < /knsetup/punbb.sql

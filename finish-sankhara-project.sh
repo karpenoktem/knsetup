@@ -51,6 +51,8 @@ sed -i -e "s/%PORTNR%/$PORT_LIGHTTPD/g" -e "s/%PROJECT_NAME%/$NAME/g" /etc/light
 sed -i "s/3306/$PORT_MYSQLD/g" /etc/mysql/my.cnf
 sed -i "s/%PROJECT_NAME%/$NAME/g" /etc/lighttpd/rewrites.conf
 
+service mysql-start
+
 ln -s karpenoktem.nl /srv/$HTTP_DOMAIN
 
 # Setup config.php for knfotos
@@ -131,6 +133,12 @@ define('FORUM_DEBUG', 1);
 EOF
 chown www-data:www-data /srv/karpenoktem.nl/htdocs/forum/config.php
 chmod 400 /srv/karpenoktem.nl/htdocs/forum/config.php
+
+cat <<EOF | mysql --defaults-file=/etc/mysql/debian.cnf
+CREATE USER prj_${NAME}_wiki@localhost IDENTIFIED BY '$PASSWORD_WIKI';
+CREATE DATABASE prj_${NAME}_wiki;
+GRANT ALL PRIVILEGES ON prj_${NAME}_wiki.* TO prj_${NAME}_wiki@localhost;
+EOF
 
 cd /srv/karpenoktem.nl/htdocs/mediawiki/maintenance
 php install.php --confpath /tmp --dbname "prj_${NAME}_wiki" --dbuser "prj_${NAME}_wiki" --dbpass "$PASSWORD_WIKI" --pass "$PASSWORD_WIKI_ADMIN" --server "http://$HTTP_DOMAIN" KnWiki Admin
