@@ -112,6 +112,13 @@ chroot $PROJECTS/$NAME/phassa /knsetup/finish-phassa-project.sh $NAME
 sh ./generate-lighttpd-proxying.sh
 
 sh start-daemons.sh $NAME
+echo -n "Waiting for giedo..."
+sleep 1
+while [ ! -e $PROJECTS/$NAME/sankhara/var/run/infra/S-giedo ]; then
+	echo -n "."
+	sleep 1
+fi
+echo
 chroot $PROJECTS/$NAME/sankhara su - infra -c "/knsetup/bootstrap-shell.sh infra /home/infra/bin/update-site-agenda"
 (
 	chroot $PROJECTS/$NAME/sankhara su - infra -c "/knsetup/bootstrap-shell.sh infra /home/infra/bin/giedo-sync"
