@@ -114,10 +114,10 @@ sh ./generate-lighttpd-proxying.sh
 sh start-daemons.sh $NAME
 echo -n "Waiting for giedo..."
 sleep 1
-while [ ! -e $PROJECTS/$NAME/sankhara/var/run/infra/S-giedo ]; then
+while [ ! -e $PROJECTS/$NAME/sankhara/var/run/infra/S-giedo ]; do
 	echo -n "."
 	sleep 1
-fi
+done
 echo
 chroot $PROJECTS/$NAME/sankhara su - infra -c "/knsetup/bootstrap-shell.sh infra /home/infra/bin/update-site-agenda"
 (
